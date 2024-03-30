@@ -16,7 +16,7 @@ get_TLCData = function(start, end, name, dir, url, dest) {
   }
 }
 
-dest = "~/UTK/NYTaxi"
+dest = "/projects/bckj/TLC"
 url = "https://d37ci6vzurychx.cloudfront.net"
 get_TLCData(start = "2009-01", end = "2009-02", name = 'yellow_tripdata_',
             dir = 'trip-data', url = url, dest = dest)
