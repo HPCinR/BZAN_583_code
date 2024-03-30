@@ -1,6 +1,6 @@
 library(lubridate)
 
-get_TLCData = function(start, end, name, dir, url, dest) {
+get_TLCData = function(start, end, name, dir, url, dest, method = "internal") {
   start = ym(start)
   end = ym(end)
 
@@ -12,7 +12,7 @@ get_TLCData = function(start, end, name, dir, url, dest) {
     dest_dir = paste0(dest, "/", yr)
     if(!dir.exists(dest_dir)) dir.create(dest_dir)
 
-    download.file(file_url, paste0(dest_dir, "/", file_name))
+    download.file(file_url, paste0(dest_dir, "/", file_name), quiet = TRUE)
   }
 }
 
