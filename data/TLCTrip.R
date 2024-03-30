@@ -1,4 +1,4 @@
-library(lubridate, quietly = TRUE)
+suppressMessages(library(lubridate, quietly = TRUE))
 
 get_TLCData = function(start, end, name, dir, url, dest, method = "internal") {
   start = ym(start)
@@ -12,7 +12,9 @@ get_TLCData = function(start, end, name, dir, url, dest, method = "internal") {
     dest_dir = paste0(dest, "/", yr)
     if(!dir.exists(dest_dir)) dir.create(dest_dir)
 
-    download.file(file_url, paste0(dest_dir, "/", file_name), quiet = TRUE)
+    system.time({
+    download.file(file_url, paste0(dest_dir, "/", file_name), method = method, quiet = TRUE)
+    })
   }
 }
 
