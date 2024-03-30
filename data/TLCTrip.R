@@ -1,6 +1,6 @@
 suppressMessages(library(lubridate, quietly = TRUE))
 
-get_TLCData = function(start, end, name, dir, url, dest, method = "internal") {
+get_TLCData = function(start, end, name, dir, url, dest, method = "wget") {
   start = ym(start)
   end = ym(end)
 
