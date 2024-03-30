@@ -21,6 +21,6 @@ get_TLCData = function(start, end, name, dir, url, dest, method = "wget", quiet 
 dest = "/projects/bckj/TLC"
 # dest = "~/UTK/NYTaxi/"
 url = "https://d37ci6vzurychx.cloudfront.net"
-get_TLCData(start = "2010-01", end = "2014-12", name = 'yellow_tripdata_',
+get_TLCData(start = "2021-01", end = "2023-12", name = 'yellow_tripdata_',
             dir = 'trip-data', url = url, dest = dest, method = "curl", quiet = TRUE)
 
