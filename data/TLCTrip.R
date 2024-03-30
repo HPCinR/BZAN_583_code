@@ -1,4 +1,4 @@
-library(lubridate)
+library(lubridate, quietly = TRUE)
 
 get_TLCData = function(start, end, name, dir, url, dest, method = "internal") {
   start = ym(start)
