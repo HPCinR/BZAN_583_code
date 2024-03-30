@@ -22,5 +22,5 @@ dest = "/projects/bckj/TLC"
 # dest = "~/UTK/NYTaxi/"
 url = "https://d37ci6vzurychx.cloudfront.net"
 get_TLCData(start = "2009-01", end = "2009-12", name = 'yellow_tripdata_',
-            dir = 'trip-data', url = url, dest = dest, method = "wget", quiet = TRUE)
+            dir = 'trip-data', url = url, dest = dest, method = "curl", quiet = TRUE)
 
