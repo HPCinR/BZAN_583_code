@@ -21,15 +21,13 @@ tlcYM_get = function(d, name, dest, url) {
                 quiet = TRUE)
 }
 
-start = ym("2021-01")
-end = ym("2023-12")
+## construct vector of yr-month-day requests
+char_dates = as.character(seq(ym("2021-01"), ym("2023-12"), by = "months"))
 
-## construct vector of yr-month requests
-char_dates = as.character(seq(start, end, by = "months"))
-
-lapply(char_dates, tlcYM_get, 
+mclapply(char_dates, tlcYM_get, 
        name = 'yellow_tripdata_', 
        dest = "/projects/bckj/TLC",
-       url = "https://d37ci6vzurychx.cloudfront.net/trip-data")
+       url = "https://d37ci6vzurychx.cloudfront.net/trip-data",
+       mc.cores = 4)
 
 
