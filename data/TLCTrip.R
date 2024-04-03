@@ -2,7 +2,7 @@ suppressMessages(library(lubridate, quietly = TRUE))
 
 #' Function to wget and write one yr-month
 #' @param d
-#' Character "YYYY-MM"
+#' Character "YYYY-MM-DD"
 #' @param name
 #' Character file name base (such as 'yellow_tripdata_')
 #' @param dest
@@ -11,12 +11,15 @@ suppressMessages(library(lubridate, quietly = TRUE))
 #' Character URL of data location
 tlcYM_get = function(d, name, dest, url) {
   yr = year(d)
+
+  ## Construct source url/file
   file_name = paste0(name, yr, '-', sprintf('%02d', month(d)), '.parquet')
   file_url = paste0(url, '/', file_name)
+  
+  ## Construct destination Delta directory
   dest_dir = paste0(dest, "/", yr)
   if(!dir.exists(dest_dir)) dir.create(dest_dir)
   
-  print(file_url)
   download.file(file_url, paste0(dest_dir, "/", file_name), method = "curl",
                 quiet = TRUE)
 }
