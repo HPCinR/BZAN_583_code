@@ -3,6 +3,7 @@
 #SBATCH --account=bckj-delta-cpu
 #SBATCH --partition=cpu
 #SBATCH --mem=16g
+#SBATCH --nodes=1
 #SBATCH --cpus-per-task=1
 #SBATCH --time 00:00:30
 #SBATCH -e ./utk.e
