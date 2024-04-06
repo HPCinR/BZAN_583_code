@@ -1,14 +1,21 @@
 suppressMessages(library(lubridate, quietly = TRUE))
 
-#' Function to wget and write one yr-month
+#' A wrapper for `download.file()` specific to TLC data to `wget` one
+#' yr-month to a destination directory. Since `download.file()` engages `wget`
+#' with a `system()` call, generating these calls to `tlcYM_get()` can be 
+#' completely parallel and the data never touches R. 
 #' @param d
-#' Character "YYYY-MM-DD"
+#' Character "YYYY-MM-DD" giving the required date.
 #' @param name
-#' Character file name base (such as 'yellow_tripdata_')
+#' Character file name base (such as 'yellow_tripdata_') from the TLC 
+#' repository documentation.
 #' @param dest
-#' Character destination directory
+#' Character destination directory path.
 #' @param url
-#' Character URL of data location
+#' Character URL of data source location.
+#' 
+#' @returns 
+#' Invisibly, returns the character URL/file combination used in data retrieval.
 tlcYM_get = function(d, name, dest, url) {
   yr = year(d)
 
@@ -16,12 +23,13 @@ tlcYM_get = function(d, name, dest, url) {
   file_name = paste0(name, yr, '-', sprintf('%02d', month(d)), '.parquet')
   file_url = paste0(url, '/', file_name)
   
-  ## Construct destination Delta directory
+  ## Construct destination directory
   dest_dir = paste0(dest, "/", yr)
   if(!dir.exists(dest_dir)) dir.create(dest_dir)
   
   download.file(file_url, paste0(dest_dir, "/", file_name), method = "curl",
                 quiet = TRUE)
+  invisible(file_url)
 }
 
 ## construct vector of yr-month-day requests
@@ -32,5 +40,3 @@ mclapply(char_dates, tlcYM_get,
        dest = "/projects/bckj/TLC",
        url = "https://d37ci6vzurychx.cloudfront.net/trip-data",
        mc.cores = 4)
-
-
