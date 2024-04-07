@@ -11,10 +11,10 @@ arrow_tlc_read_ym = function(ymd, name = "yellow_tripdata",
 arrow_tlc_read = function(first, last, cores = 1) {
   dates = seq(lubridate::ym(first), lubridate::ym(last), "months")
   tlc_dat = lapply(dates, arrow_tlc_read_ym)
-  do.call(tlc_dat, rbind)
+  do.call(rbind, tlc_dat)
 }
 
-system.time({tlc2022 = arrow_tlc_read("2022-01", "2022-12", cores = 1)})
+system.time({tlc2022 = arrow_tlc_read("2022-01", "2022-12", cores = 4)})
 
 names(tlc2022)
 dim(tlc2022)
