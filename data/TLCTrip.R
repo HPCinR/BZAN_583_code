@@ -23,7 +23,6 @@
 tlc_get_ym = function(ym, name = "yellow_tripdata", 
                      dest = "/projects/bckj/TLC_yellow",
                      url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
-  d = lubridate::ym(ym)
   yr = lubridate::year(d)
   month = lubridate::month(d)
 
