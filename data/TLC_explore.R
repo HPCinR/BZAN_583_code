@@ -17,3 +17,6 @@ arrow_tlc_read = function(first, last, cores = 1) {
 system.time({tlc2022 = arrow_tlc_read("2022-01", "2022-12", cores = 1)})
 
 names(tlc2022)
+dim(tlc2022)
+class(tlc2022)
+head(tlc2022)
