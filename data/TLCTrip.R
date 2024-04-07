@@ -43,14 +43,22 @@ tlc_get_ym = function(ymd, name = "yellow_tripdata",
 #' it in parallel.
 #' 
 #' @param first
-#' Character "YYYY-MM" first month
+#' Character "YYYY-MM" first month. Uses `lubridate::ym()` to read this and 
+#' convert to proper dates.
 #' @param last
-#' Character "YYYY-MM" last month
+#' Character "YYYY-MM" last month.  Uses `lubridate::ym()` to read this and 
+#' convert to proper dates.
 #' @param cores
 #' Integer number of cores to use for running `wget` instances in parallel
 #' 
+#' @details
+#' Since the function does a system call to `wget`, its time does not include
+#' the core time used by `wget` and includes only the R function time. But
+#' the *real* or *elapsed* time is correct.
+#' 
 #' @returns
 #' Invisibly returns the full vector of months retrieved
+#' 
 tlc_get_range = function(first, last, cores = 1) {
   ## construct vector of yr-month-day requests
   dates = seq(lubridate::ym(first), lubridate::ym(last), "months")
@@ -59,4 +67,6 @@ tlc_get_range = function(first, last, cores = 1) {
 }
 
 # tlc_get_range("2021-01", "2022-12", cores = 1)
+
+
 
