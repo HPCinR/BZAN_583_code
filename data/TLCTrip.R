@@ -43,7 +43,7 @@ tlc_get_ym = function(ym, name = "yellow_tripdata",
 tlc_get_range = function(first, last, cores = 1) {
   ## construct vector of yr-month-day requests
   dates = seq(lubridate::ym(first), lubridate::ym(last), "months")
-  mclapply(dates, tlc_get_ym, mc.cores = cores)
+  parallel::mclapply(dates, tlc_get_ym, mc.cores = cores)
 }
 
 tlc_get_range("2021-01", "2022-12", cores = 1)
