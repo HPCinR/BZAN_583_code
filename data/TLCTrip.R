@@ -1,8 +1,8 @@
 
 #' tlc_getYM: Gets one month of TLC yellow taxi data.
 #' 
-#' @param ym
-#' Character "YYYY-MM" giving the year and month to be retrieved.
+#' @param ymd
+#' A **lubridate** "YYYY-MM-01" giving the year and month to be retrieved.
 #' @param name
 #' Character file name base (such as 'yellow_tripdata') from the TLC 
 #' repository documentation.
@@ -20,11 +20,11 @@
 #' @returns 
 #' Invisibly, returns the character URL/file combination used in data retrieval.
 #' 
-tlc_get_ym = function(ym, name = "yellow_tripdata", 
+tlc_get_ym = function(ymd, name = "yellow_tripdata", 
                      dest = "/projects/bckj/TLC_yellow",
                      url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
-  yr = lubridate::year(d)
-  month = lubridate::month(d)
+  yr = lubridate::year(ymd)
+  month = lubridate::month(ymd)
 
   ## Construct source url/file
   file_name = paste0(name, "_", yr, '-', sprintf('%02d', month), '.parquet')
@@ -39,10 +39,23 @@ tlc_get_ym = function(ym, name = "yellow_tripdata",
   invisible(file_url)
 }
 
+#' tlc_get_range: A wrapper for `tlc_get_ym()` to get a range of months and do
+#' it in parallel.
+#' 
+#' @param first
+#' Character "YYYY-MM" first month
+#' @param last
+#' Character "YYYY-MM" last month
+#' @param cores
+#' Integer number of cores to use for running `wget` instances in parallel
+#' 
+#' @returns
+#' Invisibly returns the full vector of months retrieved
 tlc_get_range = function(first, last, cores = 1) {
   ## construct vector of yr-month-day requests
   dates = seq(lubridate::ym(first), lubridate::ym(last), "months")
   parallel::mclapply(dates, tlc_get_ym, mc.cores = cores)
+  invisible(dates)
 }
 
 # tlc_get_range("2021-01", "2022-12", cores = 1)
