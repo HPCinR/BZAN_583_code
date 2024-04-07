@@ -4,8 +4,7 @@ arrow_tlc_read_ym = function(ymd, name = "yellow_tripdata",
   yr = lubridate::year(ymd)
   month = lubridate::month(ymd)
   file_name = paste0(name, "_", yr, '-', sprintf('%02d', month), '.parquet')
-  file = paste0(dir, "/", file_name, )
-  tlc_dat = arrow::read_parquet(file)
+  tlc_dat = arrow::read_parquet(paste0(dir, "/", file_name))
   tlc_dat  
 }
 
