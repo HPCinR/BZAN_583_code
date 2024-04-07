@@ -37,6 +37,6 @@ char_dates = as.character(seq(ym("2021-01"), ym("2023-12"), by = "months"))
 
 mclapply(char_dates, tlcYM_get, 
        name = 'yellow_tripdata_', 
-       dest = "/projects/bckj/TLC",
+       dest = "/projects/bckj/TLC_yellow",
        url = "https://d37ci6vzurychx.cloudfront.net/trip-data",
        mc.cores = 4)
