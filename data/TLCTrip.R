@@ -1,5 +1,6 @@
 
-#' tlc_getYM: Gets one month of TLC yellow taxi data.
+#' tlc_getYM: Gets one month of TLC yellow taxi data and writes it in Hive
+#' style directory names, such as `dest/year=2015/month=8/file_name.parquet`.
 #' 
 #' @param ymd
 #' A **lubridate** "YYYY-MM-01" giving the year and month to be retrieved.
