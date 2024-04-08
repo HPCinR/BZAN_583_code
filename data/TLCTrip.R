@@ -43,11 +43,9 @@ tlc_get_ym = function(ymd, name = "yellow_tripdata",
 #' it in parallel.
 #' 
 #' @param first
-#' Character "YYYY-MM" first month. Uses `lubridate::ym()` to read this and 
-#' convert to proper dates.
+#' Character "YYYY-MM" first month. Uses `lubridate::ym()` to read
 #' @param last
-#' Character "YYYY-MM" last month.  Uses `lubridate::ym()` to read this and 
-#' convert to proper dates.
+#' Character "YYYY-MM" last month
 #' @param cores
 #' Integer number of cores to use for running `wget` instances in parallel
 #' 
