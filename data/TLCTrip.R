@@ -31,7 +31,9 @@ tlc_get_ym = function(ymd, name = "yellow_tripdata",
   file_url = paste0(url, '/', file_name)
   
   ## Construct destination directory
-  dest_dir = paste0(dest, "/", yr)
+  dest_dir = paste0(dest, "/year=", yr)
+  if(!dir.exists(dest_dir)) dir.create(dest_dir)
+  dest_dir = paste0(dest_dir, "/month=", month)
   if(!dir.exists(dest_dir)) dir.create(dest_dir)
   
   download.file(file_url, paste0(dest_dir, "/", file_name), method = "curl",
