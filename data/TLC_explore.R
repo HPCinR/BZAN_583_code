@@ -1,22 +1,34 @@
+## TLC_yellow data was written in arrow-friendly format, partitioned by yr-month
 
-arrow_tlc_read_ym = function(ymd, name = "yellow_tripdata", 
-                                dir = "/projects/bckj/TLC_yellow") {
-  yr = lubridate::year(ymd)
-  month = lubridate::month(ymd)
-  file_name = paste0(name, "_", yr, '-', sprintf('%02d', month), '.parquet')
-  tlc_dat = arrow::read_parquet(paste0(dir, "/", yr, "/", file_name), mmap = FALSE)
-  tlc_dat  
-}
+## print various measures of memory use
+memuse::Sys.procmem()
+memuse::Sys.meminfo()
+pryr::mem_used()
 
-arrow_tlc_read = function(first, last, cores = 1) {
-  dates = seq(lubridate::ym(first), lubridate::ym(last), "months")
-  tlc_dat = lapply(dates, arrow_tlc_read_ym)
-  do.call(rbind, tlc_dat)
-}
+## get memory use of this process from Unix "ps" command
+args = paste("-o drs,rss -p", Sys.getpid())
+system2("ps", args)
+## DRS: (B) data resident set size, the amount of physical memory devoted to other than executable code
+## RSS: (kB) resident set size, the non-swapped physical memory that a task has used (in kiloBytes).
 
-system.time({tlc2022 = arrow_tlc_read("2022-01", "2022-12", cores = 4)})
+tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
+tlc
 
-names(tlc2022)
-dim(tlc2022)
-class(tlc2022)
-head(tlc2022)
+system2("tree", "/projects/bckj/TLC_yellow/")
+
+memuse::Sys.procmem()
+memuse::Sys.meminfo()
+pryr::mem_used()
+
+tlc200901 = tlc %>% dplyr(year == 2009, month == 1)
+
+memuse::mu(tlc200901, prefix = "SI")
+object_size(tlc200901)
+object.size(tlc200901)
+
+tlc200901 = tlc200901 %>% collect()
+
+memuse::mu(tlc200901, prefix = "SI")
+object_size(tlc200901)
+object.size(tlc200901)
+

@@ -11,7 +11,6 @@
 
 pwd
 
-## module names can vary on different platforms
 module load r
 echo "loaded R"
 module list
