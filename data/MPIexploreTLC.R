@@ -16,7 +16,7 @@ print("opening dataset")
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/year=2009")
 tlc
 
-my_months = comm.chunk(12, form = "vector")
+my_months = comm.chunk(4, form = "vector")
 
 read_tlc_month = function(m, tlc) {
   tlc %>% filter(month == m) %>% collect()
