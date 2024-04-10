@@ -19,6 +19,8 @@ system2("ps", args)
 
 arrow_info()
 
+system2("tree", "/projects/bckj/TLC_yellow/")
+
 print("opening dataset")
 
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
