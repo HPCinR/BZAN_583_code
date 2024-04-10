@@ -26,8 +26,6 @@ print("opening dataset")
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
 tlc
 
-system2("tree", "/projects/bckj/TLC_yellow/")
-
 months = c(1,2)
 
 read_tlc = function(m, tlc) {
