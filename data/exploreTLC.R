@@ -18,7 +18,7 @@ system2("ps", args)
 ## RSS: (kB) resident set size, the non-swapped physical memory that a task has used (in kiloBytes).
 
 print("opening dataset")
-tlc = arrow::open_dataset("/scratch/bckj/TLC_yellow/year=2009")
+tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/year=2009")
 tlc
 
 months = 1:4
