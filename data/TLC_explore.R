@@ -17,6 +17,10 @@ system2("ps", args)
 ## DRS: (B) data resident set size, the amount of physical memory devoted to other than executable code
 ## RSS: (kB) resident set size, the non-swapped physical memory that a task has used (in kiloBytes).
 
+arrow_info()
+
+print("opening dataset")
+
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
 tlc
 
