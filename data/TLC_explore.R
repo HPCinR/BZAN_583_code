@@ -26,7 +26,7 @@ print("opening dataset")
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
 tlc
 
-months = c(1,2)
+months = 1:12
 
 read_tlc = function(m, tlc) {
   tlc %>% filter(year == 2009, month == m) %>% collect()
@@ -35,23 +35,24 @@ read_tlc = function(m, tlc) {
 print("into lapply")
 
 system.time({
-tlc2009jf = lapply(months, read_tlc, tlc = tlc)
-tlc2009jf = do.call(rbind, tlc2009jf)
+tlc2009 = lapply(months, read_tlc, tlc = tlc)
+tlc2009 = do.call(rbind, tlc2009)
 })
 
-mean(tlc2009jf$Total_Amt)
-rm(tlc2009jf)
+mean(tlc2009$Total_Amt)
+rm(tlc2009)
 gc()
 
 print("into mclapply")
 
 system.time({
-  tlc2009jf = mclapply(months, read_tlc, tlc = tlc, mc.cores = 2)
-  tlc2009jf = do.call(rbind, tlc2009jf)
+  tlc2009 = mclapply(months, read_tlc, tlc = tlc, mc.cores = 4)
+  tlc2009 = do.call(rbind, tlc2009)
 })
 
-mean(tlc2009jf$Total_Amt)
+mean(tlc2009$Total_Amt)
 
+mu(tlc2009)
 memuse::Sys.procmem()
 memuse::Sys.meminfo()
 pryr::mem_used()
