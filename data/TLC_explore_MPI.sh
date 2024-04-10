@@ -2,7 +2,7 @@
 #SBATCH --job-name utk
 #SBATCH --account=bckj-delta-cpu
 #SBATCH --partition=cpu
-#SBATCH --mem=80g
+#SBATCH --mem=150g
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node 6
 #SBATCH --cpus-per-task=1
