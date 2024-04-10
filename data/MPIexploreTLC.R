@@ -24,11 +24,10 @@ my_tlc2009 = do.call(rbind, my_tlc2009)
 Total_mean = comm.mean(my_tlc2009$Total_Amt)
 comm.print(Total_mean)
 
-tlc2009 = allgather(my_tlc2009)
-comm.cat("my_dim:", dim(my_tlc2009), "\n")
-comm.cat("dim:", dim(tlc2009), "\n")
-
-Total_mean = mean(tlc2009$Total_Amt)
-comm.print(Total_mean)
-
+## debug allgather
+## Error in spmd.allgather.integer(length(x.raw), integer(spmd.comm.size(comm = comm)),  : 
+##   INTEGER() can only be applied to a 'integer', not a 'double'
+## Calls: allgather ... allgather -> spmd.allgather.object -> spmd.allgather.integer
+## Execution halted
+                                
 finalize()
