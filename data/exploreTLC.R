@@ -44,7 +44,8 @@ system.time({
 
 mean(tlc2009$Total_Amt)
 
-mu(tlc2009)
+memuse::mu(tlc2009)
 memuse::Sys.procmem()
-memuse::Sys.meminfo()
 pryr::mem_used()
+
+head(tlc2009)
