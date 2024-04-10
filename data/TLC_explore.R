@@ -1,5 +1,10 @@
 ## TLC_yellow data was written in arrow-friendly format, partitioned by yr-month
 
+library(dplyr)
+library(arrow)
+library(memuse)
+library(pryr)
+
 ## print various measures of memory use
 memuse::Sys.procmem()
 memuse::Sys.meminfo()
@@ -20,15 +25,15 @@ memuse::Sys.procmem()
 memuse::Sys.meminfo()
 pryr::mem_used()
 
-tlc200901 = tlc %>% dplyr(year == 2009, month == 1)
+tlc200901 = tlc %>% filter(year == 2009, month == 1)
 
 memuse::mu(tlc200901, prefix = "SI")
-object_size(tlc200901)
+pryr::object_size(tlc200901)
 object.size(tlc200901)
 
 tlc200901 = tlc200901 %>% collect()
 
 memuse::mu(tlc200901, prefix = "SI")
-object_size(tlc200901)
+pryr::object_size(tlc200901)
 object.size(tlc200901)
 
