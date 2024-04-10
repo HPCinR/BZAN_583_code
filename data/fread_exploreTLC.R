@@ -1,8 +1,6 @@
 ## 
 
 library(data.table)
-library(memuse)
-library(pryr)
 library(parallel)
 
 ## print various measures of memory use
@@ -22,7 +20,7 @@ dir = "/projects/bckj/TLC_yellow_csv/year=2009"
 months = 1:2
 
 read_tlc = function(m, tlc) {
-  file = paste0(dir, "/month=", m, "part-0.csv")
+  file = paste0(dir, "/month=", m, "/part-0.csv")
   data.table::fread(file)
 }
 
