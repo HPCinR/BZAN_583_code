@@ -24,11 +24,9 @@ read_tlc_month = function(m, tlc) {
 
 my_tlc2009 = lapply(my_months, read_tlc_month, tlc = tlc)
 my_tlc2009 = do.call(rbind, my_tlc2009)
-tlc2009 = gather(my_tlc2009)
 
-if(comm.rank() == 0) {
-  print("mean from rank 0:")
-  print(mean(tlc2009$Total_Amt))
-}
+Total_mean = comm.mean(my_tlc2009$Total_Amt)
+
+comm.print(Total_mean)
 
 finalize()
