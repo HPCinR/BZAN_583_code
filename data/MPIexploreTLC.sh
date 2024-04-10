@@ -16,4 +16,4 @@ module load r
 echo "loaded R"
 module list
 
-time mpirun -np 6 Rscript TLC_explore_MPI.R
+time mpirun -np 6 Rscript MPIexploreTLC.R

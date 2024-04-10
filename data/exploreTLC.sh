@@ -15,4 +15,4 @@ module load r
 echo "loaded R"
 module list
 
-time Rscript TLC_explore.R
+time Rscript exploreTLC.R
