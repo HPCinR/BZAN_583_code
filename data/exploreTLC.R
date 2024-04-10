@@ -21,7 +21,7 @@ print("opening dataset")
 tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/year=2009")
 tlc
 
-months = 1:4
+months = 1:2
 
 read_tlc = function(m, tlc) {
   tlc %>% filter(month == m) %>% collect()
