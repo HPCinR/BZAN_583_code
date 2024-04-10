@@ -27,7 +27,7 @@ tlc
 months = 1:2
 
 read_tlc = function(m, tlc) {
-  tlc %>% filter(year == 2009, month == m) %>% collect()
+  tlc %>% filter(month == m) %>% collect()
 }
 
 print("into lapply")
@@ -44,7 +44,7 @@ gc()
 print("into mclapply")
 
 system.time({
-  tlc2009 = mclapply(months, read_tlc, tlc = tlc, mc.cores = 4)
+  tlc2009 = mclapply(months, read_tlc, tlc = tlc, mc.cores = 2)
   tlc2009 = do.call(rbind, tlc2009)
 })
 
