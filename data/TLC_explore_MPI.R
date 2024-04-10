@@ -9,7 +9,7 @@ suppressMessages(library(parallel))
 memuse::Sys.procmem()
 arrow_info()
 
-system2("tree", "/projects/bckj/TLC_yellow/")
+system2("tree", "/projects/bckj/TLC_yellow/year=2009")
 
 print("opening dataset")
 
