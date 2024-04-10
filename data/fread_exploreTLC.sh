@@ -5,7 +5,7 @@
 #SBATCH --mem=60g
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=4
-#SBATCH --time 00:10:00
+#SBATCH --time 00:30:00
 #SBATCH -e ./utk.e
 #SBATCH -o ./utk.o
 

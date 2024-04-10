@@ -17,25 +17,25 @@ system2("ps", args)
 print("opening dataset")
 dir = "/projects/bckj/TLC_yellow_csv/year=2009"
 
-months = 1:2
+months = 1:4
 
 read_tlc = function(m, tlc) {
   file = paste0(dir, "/month=", m, "/part-0.csv")
   data.table::fread(file)
 }
 
-print("into lapply")
-system.time({
-tlc2009 = lapply(months, read_tlc, tlc = tlc)
-tlc2009 = do.call(rbind, tlc2009)
-})
+##print("into lapply")
+##system.time({
+##tlc2009 = lapply(months, read_tlc, tlc = tlc)
+##tlc2009 = do.call(rbind, tlc2009)
+##})
 
-mean(tlc2009$Total_Amt)
-rm(tlc2009)
+##mean(tlc2009$Total_Amt)
+##rm(tlc2009)
 
 print("into mclapply")
 system.time({
-  tlc2009 = mclapply(months, read_tlc, tlc = tlc, mc.cores = 2)
+  tlc2009 = mclapply(months, read_tlc, tlc = tlc, mc.cores = 4)
   tlc2009 = do.call(rbind, tlc2009)
 })
 
