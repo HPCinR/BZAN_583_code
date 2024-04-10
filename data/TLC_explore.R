@@ -19,14 +19,12 @@ system2("ps", args)
 
 arrow_info()
 
-system2("tree", "/projects/bckj/TLC_yellow/")
-
 print("opening dataset")
 
-tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/")
+tlc = arrow::open_dataset("/projects/bckj/TLC_yellow/year=2009")
 tlc
 
-months = 1:12
+months = 1:2
 
 read_tlc = function(m, tlc) {
   tlc %>% filter(year == 2009, month == m) %>% collect()
