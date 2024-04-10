@@ -48,4 +48,4 @@ memuse::mu(tlc2009)
 memuse::Sys.procmem()
 pryr::mem_used()
 
-head(tlc2009)
+dim(tlc2009)
