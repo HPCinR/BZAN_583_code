@@ -11,7 +11,7 @@ pwd
 module load R
 echo "loaded R"
 
-time Rscript rf_cv_serial.r
+time Rscript rf_cv_serial.R
 time Rscript rf_cv_mc.r --args 8
 time Rscript rf_cv_mc.r --args 16
 time Rscript rf_cv_mc.r --args 32
