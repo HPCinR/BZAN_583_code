@@ -26,11 +26,6 @@ module list  # job documentation and metadata
 
 echo "job is starting on `hostname`"
 
-#which python3
-#conda list tensorflow
-#srun python3 \
-#  tf_gpu.py
-
 Rscript -e "torch_tensor(1, device = "cuda")"
 
 exit
