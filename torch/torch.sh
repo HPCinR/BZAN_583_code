@@ -21,7 +21,7 @@ module purge # drop modules and explicitly load the ones needed
 module avail
 
 #module load anaconda3_gpu
-module load r
+module load r_flexiblas
 module list  # job documentation and metadata
 
 echo "job is starting on `hostname`"
