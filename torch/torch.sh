@@ -3,7 +3,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16     # <- match to OMP_NUM_THREADS
-#SBATCH --partition=gpuA100x4-interactive
+#SBATCH --partition=gpu
 #SBATCH --time=00:10:00
 #SBATCH --account=bckj-delta-gpu
 #SBATCH --job-name=utk
@@ -15,7 +15,7 @@
 #SBATCH --gpu-bind=verbose,per_task:1
 ###SBATCH --gpu-bind=none     # <- or closest
 
-module purge # drop modules and explicitly load the ones needed
+#module purge # drop modules and explicitly load the ones needed
              # (good job metadata and reproducibility)
 
 #module load anaconda3_gpu
