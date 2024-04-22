@@ -17,6 +17,8 @@
 
 module purge # drop modules and explicitly load the ones needed
              # (good job metadata and reproducibility)
+             
+module avail
 
 #module load anaconda3_gpu
 module load r
