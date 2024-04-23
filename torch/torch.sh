@@ -26,6 +26,6 @@ module list  # job documentation and metadata
 
 echo "job is starting on `hostname`"
 
-Rscript -e "torch::torch_tensor(1, device = "cuda")"
+Rscript -e "torch::torch_tensor(1, device = 'cuda')"
 
 exit
