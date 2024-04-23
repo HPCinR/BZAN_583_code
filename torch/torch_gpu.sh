@@ -19,6 +19,6 @@ module list
 
 echo "job is starting on `hostname`"
 
-Rscript -e "torch::torch_tensor(1, device = 'cuda')"
+time Rscript torch_gpu.R
 
 exit
