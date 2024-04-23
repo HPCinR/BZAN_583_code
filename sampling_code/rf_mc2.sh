@@ -14,11 +14,13 @@ pwd
 module load r
 module list
 
+## Order the runs for faster total time
 date
-time Rscript rf_serial.R
+time Rscript rf_mc.R --args 2 &
+time Rscript rf_mc.R --args 4 &
+time Rscript rf_mc.R --args 8 &
+time Rscript rf_serial.R &
 time Rscript rf_mc.R --args 1
-time Rscript rf_mc.R --args 2
-time Rscript rf_mc.R --args 4
-time Rscript rf_mc.R --args 8
 time Rscript rf_mc.R --args 16
 date
+
