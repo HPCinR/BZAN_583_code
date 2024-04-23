@@ -13,16 +13,9 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=verbose,per_task:1
-###SBATCH --gpu-bind=none     # <- or closest
 
-#module purge # drop modules and explicitly load the ones needed
-             # (good job metadata and reproducibility)
-             
-module avail
-
-#module load anaconda3_gpu
 module load r
-module list  # job documentation and metadata
+module list 
 
 echo "job is starting on `hostname`"
 
