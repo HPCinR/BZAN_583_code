@@ -6,8 +6,8 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=16
 #SBATCH --time 00:10:00
-#SBATCH -e ./utk.e
-#SBATCH -o ./utk.o
+#SBATCH -e ./utk2.e
+#SBATCH -o ./utk2.o
 
 pwd
 
