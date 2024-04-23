@@ -15,13 +15,13 @@
 #SBATCH --gpu-bind=verbose,per_task:1
 ###SBATCH --gpu-bind=none     # <- or closest
 
-module purge # drop modules and explicitly load the ones needed
+#module purge # drop modules and explicitly load the ones needed
              # (good job metadata and reproducibility)
              
 module avail
 
 #module load anaconda3_gpu
-module load r_flexiblas
+module load r
 module list  # job documentation and metadata
 
 echo "job is starting on `hostname`"
