@@ -43,9 +43,7 @@ comm.cat(msg, quiet = TRUE, all.rank = TRUE)
 
 comm.cat("Total R sessions:", comm.size(), "Total cores:", cores_total, "\n",
          quiet = TRUE)
-comm.cat("\nNotes: cores on node obtained by: detectCores {parallel}\n",
-         "       ranks (R sessions) per node: OMPI_COMM_WORLD_LOCAL_SIZE\n",
-         "       pid to core map changes frequently during mclapply\n",
+comm.cat("\nNotes: pid to core map changes frequently during mclapply\n",
          quiet = TRUE)
 
 finalize()
