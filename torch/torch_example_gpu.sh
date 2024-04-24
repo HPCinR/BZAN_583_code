@@ -19,6 +19,6 @@ module list
 
 echo "job is starting on `hostname`"
 
-time Rscript torch_gpu.R
+time Rscript torch_example_gpu.R
 
 exit
