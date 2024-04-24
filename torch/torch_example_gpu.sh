@@ -4,7 +4,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=16     # <- match to OMP_NUM_THREADS
 #SBATCH --partition=gpuA100x4-preempt
-#SBATCH --time=00:10:00
+#SBATCH --time=00:20:00
 #SBATCH --account=bckj-delta-gpu
 #SBATCH --job-name=utk
 #SBATCH -e ./utk.e
