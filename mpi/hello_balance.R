@@ -12,6 +12,8 @@ comm.print(sessionInfo())
 ## get node name
 host = system("hostname", intern = TRUE)
 
+print(system("export | grep SLURM", intern = TRUE), all.rank = TRUE)
+
 mc.function = function(x) {
     Sys.sleep(1) # replace with your function for mclapply cores here
     Sys.getpid() # returns process id
