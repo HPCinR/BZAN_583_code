@@ -30,11 +30,10 @@ my_pids = do.call(paste, my_pids) # combines results from mclapply
 msg = paste0("Hello World from rank ", comm.rank(), " on host ", host, " with ", my_cores, " cores allocated\n",
              "            (", ranks_on_my_node, " R sessions sharing ", cores_on_my_node, " cores on this host node).\n",
              "      pid: ", my_pids, "\n")
-comm.cat(msg, quiet = TRUE, all.rank = TRUE)
+comm.cat(msg, all.rank = TRUE)
 
-comm.cat("Total R sessions:", comm.size(), "Total cores:", cores_total, "\n",
-         quiet = TRUE)
-comm.cat("\nNotes: pid to core map changes frequently during mclapply\n",
-         quiet = TRUE)
+barrier()  # wait for all ranks to reach this point
+comm.cat("Total R sessions:", comm.size(), "Total cores:", cores_total, "\n", quiet = TRUE)
+comm.cat("\nNotes: pid to core map changes frequently during mclapply\n", quiet = TRUE)
 
 finalize()
