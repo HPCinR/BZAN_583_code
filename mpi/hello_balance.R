@@ -26,7 +26,7 @@ cores_on_my_node = Sys.getenv("SLURM_CPUS_ON_NODE")
 cores_total = allreduce(my_cores)  # adds up over ranks
 
 ## Run mclapply on allocated cores to demonstrate fork pids
-my_pids = parallel::mclapply(seq_len(my_cores), mc.function, mc.cores = cores_per_R)
+my_pids = parallel::mclapply(seq_len(my_cores), mc.function, mc.cores = my_cores)
 my_pids = do.call(paste, my_pids) # combines results from mclapply
 ##
 ## Same cores are shared with OpenBLAS (see flexiblas package)
