@@ -1,21 +1,15 @@
 ## This script describes two levels of parallelism:
-## Top level: Distributed MPI runs several copies of this entire script.
-##            Instances differ by their comm.rank() designation.
-## Inner level: The unix fork (copy-on-write) shared memory parallel execution
-##            of the mc.function() managed by parallel::mclapply()
-## Further levels are possible: multithreading in compiled code and communicator
-## splitting at the distributed MPI level.
+## Top level: Distributed MPI runs several copies of this entire script. Instances differ by their comm.rank() designation.
+## Inner level: The unix fork (copy-on-write) shared memory parallel execution of the mc.function() managed by parallel::mclapply()
+## Further levels are possible: multithreading in compiled code and communicator splitting at the distributed MPI level.
 
 suppressMessages(library(pbdMPI))
 comm.print(sessionInfo())
 
-## get node name
-host = system("hostname", intern = TRUE)
-
-print(system("export | grep SLURM", intern = TRUE), all.rank = TRUE)
+host = system("hostname", intern = TRUE)  # get node name
 
 mc.function = function(x) {
-    Sys.sleep(1) # replace with your function for mclapply cores here
+    Sys.sleep(0.1) # replace with your function for mclapply cores here
     Sys.getpid() # returns process id
 }
 
@@ -47,4 +41,3 @@ comm.cat("\nNotes: pid to core map changes frequently during mclapply\n",
          quiet = TRUE)
 
 finalize()
-
