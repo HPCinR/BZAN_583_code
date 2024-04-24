@@ -29,10 +29,8 @@ cores_total = allreduce(my_cores)  # adds up over ranks
 my_pids = parallel::mclapply(seq_len(my_cores), mc.function, mc.cores = my_cores)
 my_pids = do.call(paste, my_pids) # combines results from mclapply
 ##
-## Same cores are shared with OpenBLAS (see flexiblas package)
-##            or for other OpenMP enabled codes outside mclapply.
-## If BLAS functions are called inside mclapply, they compete for the
-##            same cores: avoid or manage appropriately!!!
+## Same cores are shared with OpenBLAS (see flexiblas package) or for other OpenMP enabled codes outside mclapply.
+## If BLAS functions are called inside mclapply, they compete for the same cores: avoid or manage appropriately!!!
 
 ## Now report what happened and where
 msg = paste0("Hello World from rank ", comm.rank(), " on host ", host,
