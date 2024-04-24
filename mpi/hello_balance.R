@@ -27,13 +27,10 @@ my_pids = do.call(paste, my_pids) # combines results from mclapply
 ## If BLAS functions are called inside mclapply, they compete for the same cores: avoid or manage appropriately!!!
 
 ## Now report what happened and where
-msg = paste0("Hello World from rank ", comm.rank(), " on host ", host,
-             " with ", my_cores, " cores allocated\n",
-             "            (", ranks_on_my_node, " R sessions sharing ",
-             cores_on_my_node, " cores on this host node).\n",
+msg = paste0("Hello World from rank ", comm.rank(), " on host ", host, " with ", my_cores, " cores allocated\n",
+             "            (", ranks_on_my_node, " R sessions sharing ", cores_on_my_node, " cores on this host node).\n",
              "      pid: ", my_pids, "\n")
 comm.cat(msg, quiet = TRUE, all.rank = TRUE)
-
 
 comm.cat("Total R sessions:", comm.size(), "Total cores:", cores_total, "\n",
          quiet = TRUE)
