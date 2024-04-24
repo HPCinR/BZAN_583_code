@@ -19,15 +19,14 @@ mc.function = function(x) {
     Sys.getpid() # returns process id
 }
 
-## Compute how many cores per R session are on this node
-local_ranks_query = "echo $OMPI_COMM_WORLD_LOCAL_SIZE"
-ranks_on_my_node = as.numeric(system(local_ranks_query, intern = TRUE))
-cores_on_my_node = parallel::detectCores()
-cores_per_R = floor(cores_on_my_node/ranks_on_my_node)
-cores_total = allreduce(cores_per_R)  # adds up over ranks
+## ranks and cores queries
+ranks_on_my_node = Sys.getenv("SLURM_NTASKS_PER_NODE")
+my_cores = Sys.getenv("SLURM_CPUS_PER_TASK")
+cores_on_my_node = Sys.getenv("SLURM_CPUS_ON_NODE")
+cores_total = allreduce(my_cores)  # adds up over ranks
 
 ## Run mclapply on allocated cores to demonstrate fork pids
-my_pids = parallel::mclapply(1:cores_per_R, mc.function, mc.cores = cores_per_R)
+my_pids = parallel::mclapply(seq_len(my_cores), mc.function, mc.cores = cores_per_R)
 my_pids = do.call(paste, my_pids) # combines results from mclapply
 ##
 ## Same cores are shared with OpenBLAS (see flexiblas package)
@@ -37,7 +36,7 @@ my_pids = do.call(paste, my_pids) # combines results from mclapply
 
 ## Now report what happened and where
 msg = paste0("Hello World from rank ", comm.rank(), " on host ", host,
-             " with ", cores_per_R, " cores allocated\n",
+             " with ", my_cores, " cores allocated\n",
              "            (", ranks_on_my_node, " R sessions sharing ",
              cores_on_my_node, " cores on this host node).\n",
              "      pid: ", my_pids, "\n")
