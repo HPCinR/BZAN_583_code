@@ -20,4 +20,3 @@ time Rscript rf_mc.R --args 8 &    # 14 cores in use
 time Rscript rf_serial.R &         # 15 cores in use
 time Rscript rf_mc.R --args 1      # 16 cores in use
 time Rscript rf_mc.R --args 16
-
