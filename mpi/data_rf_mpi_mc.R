@@ -23,7 +23,7 @@ my_data <- my_data %>%
 
 comm.cat(comm.rank(), "dim", dim(my_data), "\n", all.rank = TRUE)
 
-## Function to gather all data to all ranks
+## allgather() for data.frames (not in pbdMPI ... yet!)
 allgather.data.frame = function(x) {
   cnames = names(x)
   x = lapply(x, function(x) do.call(c, allgather(x)))
@@ -60,10 +60,10 @@ my_rf = do.call(combine, my_rf)            #<<
 rf_all = allgather(my_rf)                  #<<
 rf_all = do.call(combine, rf_all)          #<<
 
-pred = as.vector(predict(rf_all, my_test))
+my_pred = as.vector(predict(rf_all, my_test))
 
-# correct = allreduce(sum(pred == my_test$<your-true-category>))  # classification
-sse = allreduce(sum((pred - my_test$<your-target>)^2)) # regression
+# correct = allreduce(sum(my_pred == my_test$<your-true-category>))  # classification
+sse = allreduce(sum((my_pred - my_test$<your-target>)^2)) # regression
 # comm.cat("Proportion Correct:", correct/(n_test), "\n")
 comm.cat("RMSE:", sqrt(rmse/n_test), "\n")
 
