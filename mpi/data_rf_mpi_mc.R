@@ -53,7 +53,7 @@ data = data[i_samp, ]    # limit to 100k obs for debugging
 n = nrow(data)
 n_test = floor(0.2 * n)
 i_test = sample.int(n, n_test)
-train = data[-i_test, ][1:1000, ]    # limit to 1k obs for debugging
+train = data[-i_test, ]
 my_test = data[i_test, ][comm.chunk(n_test, form = "vector"), ] 
 rm(data)  # no longer needed, free up memory
 
