@@ -77,6 +77,6 @@ rmse = sqrt(sse/n_test)
 comm.cat("RMSE:", rmse, "\n")
 mean = allreduce(sum(my_test$your_target)) / n_test
 comm.cat("Mean:", mean, "\n")
-comm.cat("Coefficient of Variation:", 100*sqrt(sse/n_test)/mean, "\n")
+comm.cat("Coefficient of Variation:", 100*rmse/mean, "\n")
 
 finalize()
