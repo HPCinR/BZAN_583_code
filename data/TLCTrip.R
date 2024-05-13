@@ -13,17 +13,20 @@
 #' Character URL of data source location.
 #' 
 #' @details
-#' Uses `method = wget` to get one month of TLC yellow taxi data into the
-#' `dest` directory. Since `download.file()` engages `wget`
+#' Uses `method = curl` to get one month of TLC yellow taxi data into the
+#' `dest` directory. Since `download.file()` engages `curl`
 #' with a `system()` call, generating these calls to `tlcYM_get()` can be 
 #' completely parallel and the data never touches R. 
 #' 
 #' @returns 
 #' Invisibly, returns the character URL/file combination used in data retrieval.
 #' 
-tlc_get_ym = function(ymd, name = "yellow_tripdata", 
-                     dest = "/projects/bckj/TLC_yellow",
-                     url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
+#tlc_get_ym = function(ymd, name = "yellow_tripdata", 
+#                     dest = "/projects/bckj/TLC_yellow",
+#                     url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
+tlc_get_ym = function(ymd, name = "fvhv_tripdata", 
+                        dest = "/projects/bckj/TLC_fvhv",
+                        url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
   yr = lubridate::year(ymd)
   month = lubridate::month(ymd)
 
@@ -50,11 +53,11 @@ tlc_get_ym = function(ymd, name = "yellow_tripdata",
 #' @param last
 #' Character "YYYY-MM" last month
 #' @param cores
-#' Integer number of cores to use for running `wget` instances in parallel
+#' Integer number of cores to use for running `curl` instances in parallel
 #' 
 #' @details
-#' Since the function does a system call to `wget`, its time does not include
-#' the core time used by `wget` and includes only the R function time. But
+#' Since the function does a system call to `curl`, its time does not include
+#' the core time used by `curl` and includes only the R function time. But
 #' the *real* or *elapsed* time is correct.
 #' 
 #' @returns
@@ -68,6 +71,7 @@ tlc_get_range = function(first, last, cores = 1) {
 }
 
 # tlc_get_range("2021-01", "2022-12", cores = 1)
+tlc_get_range("2024-01", "2024-03", cores = 1)
 
 
 
