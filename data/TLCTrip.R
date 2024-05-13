@@ -24,7 +24,7 @@
 #tlc_get_ym = function(ymd, name = "yellow_tripdata", 
 #                     dest = "/projects/bckj/TLC_yellow",
 #                     url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
-tlc_get_ym = function(ymd, name = "fvhv_tripdata", 
+tlc_get_ym = function(ymd, name = "fhvhv_tripdata", 
                         dest = "/projects/bckj/TLC_fvhv",
                         url = "https://d37ci6vzurychx.cloudfront.net/trip-data") {
   yr = lubridate::year(ymd)
