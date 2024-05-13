@@ -71,7 +71,7 @@ tlc_get_range = function(first, last, cores = 1) {
 }
 
 # tlc_get_range("2021-01", "2022-12", cores = 1)
-tlc_get_range("2024-01", "2024-03", cores = 1)
+# tlc_get_range("2024-01", "2024-03", cores = 1)
 
 
 
